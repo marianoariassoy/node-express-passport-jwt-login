@@ -30,8 +30,8 @@ const initializePassport = () => {
       async (jwt_payload, done) => {
         try {
           return done(null, jwt_payload)
-        } catch (err) {
-          return done(err)
+        } catch (error) {
+          return done(error, false, { message: 'Something went wrong' })
         }
       }
     )
@@ -49,8 +49,7 @@ const initializePassport = () => {
         try {
           const user = await usersModel.findOne({ email })
           if (user) {
-            console.log('User already exists')
-            return done(null, false)
+            return done(null, false, { message: 'User already exists' })
           }
           const newUser = await usersModel.create({
             first_name,
@@ -62,8 +61,7 @@ const initializePassport = () => {
           const result = await usersModel.create(newUser)
           return done(null, result)
         } catch (error) {
-          console.log(error)
-          return done(null, false)
+          return done(null, false, { message: 'Something went wrong' })
         }
       }
     )
@@ -79,19 +77,14 @@ const initializePassport = () => {
         try {
           const user = await usersModel.findOne({ email })
           if (!user) {
-            console.log('User not found')
-            return done(null, false)
+            return done(null, false, { message: 'User not found' })
           }
-
           if (!isValidatePassword(password, user.password)) {
-            console.log('Wrong password')
-            return done(null, false)
+            return done(null, false, { message: 'Wrong password' })
           }
-
           return done(null, user)
         } catch (error) {
-          console.log(error)
-          return done(null, false)
+          return done(null, false, { message: 'Something went wrong' })
         }
       }
     )

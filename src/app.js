@@ -3,7 +3,7 @@ import passport from 'passport'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import sessionsRouter from './routes/sessions.routes.js'
-import initializePassport from './config/passport.config.js'
+import initializePassport from './passport/passport.config.js'
 
 // Config
 dotenv.config()

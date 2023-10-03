@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
+import { passportCall } from '../passport/passport.utils.js'
 
 const router = Router()
 
@@ -15,7 +16,7 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
   })
 })
 
-router.post('/login', passport.authenticate('login', { session: false }), async (req, res) => {
+router.post('/login', passportCall('login'), (req, res) => {
   const { email, password } = req.body
   const token = jwt.sign({ email, password }, process.env.JWT_SECRET)
   res.cookie('jwt-cookie', token, {
@@ -25,7 +26,7 @@ router.post('/login', passport.authenticate('login', { session: false }), async 
   res.send({ stutus: 'Logged in', token: token })
 })
 
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/current', passportCall('jwt'), (req, res) => {
   res.send(req.user)
 })
 
