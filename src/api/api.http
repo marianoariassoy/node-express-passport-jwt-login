@@ -1,0 +1,30 @@
+### Root
+GET http://localhost:8080/api/sessions
+
+### Login
+POST http://localhost:8080/api/sessions/login
+content-type: application/json
+
+{
+    "email": "mariano_arias2@email.com",
+    "password": "123456" 
+}
+
+### Signup
+POST http://localhost:8080/api/sessions/signup
+content-type: application/json
+
+{
+    "firstName": "Mariano",
+    "lastName": "Arias",
+    "email": "mariano_arias2222@email.com",
+    "age": 79,
+    "password": "123456"
+}
+
+
+### User info
+GET http://localhost:8080/api/sessions/current
+
+### Logout
+GET http://localhost:8080/api/sessions/logout
