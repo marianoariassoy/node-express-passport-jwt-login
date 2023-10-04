@@ -26,5 +26,8 @@ content-type: application/json
 ### User info
 GET http://localhost:8080/api/sessions/current
 
+### Only admin user
+GET http://localhost:8080/api/sessions/dashboard
+
 ### Logout
 GET http://localhost:8080/api/sessions/logout

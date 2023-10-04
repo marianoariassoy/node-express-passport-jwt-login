@@ -3,13 +3,11 @@ import local from 'passport-local'
 import jwt from 'passport-jwt'
 import { usersModel } from '../model/users.model.js'
 import { createHash, isValidatePassword } from '../utils.js'
-import dotenv from 'dotenv'
 
 // Config
 const LocalStrategy = local.Strategy
 const JWTStrategy = jwt.Strategy
 const ExtractJWT = jwt.ExtractJwt
-dotenv.config()
 
 const cookieExtractor = req => {
   let token = null

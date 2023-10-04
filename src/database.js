@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 mongoose
-  .connect(
-    "mongodb+srv://santo:santo@cluster0.8ix6f.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.DB_URL)
 
   .then(() => {
-    console.log("Connected to the database");
+    console.log('Connected to the database')
   })
-  .catch((error) => {
-    console.error("Error connecting to the database:", error);
-  });
+  .catch(error => {
+    console.error('Error connecting to the database:', error)
+  })
